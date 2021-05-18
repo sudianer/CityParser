@@ -11,8 +11,4 @@ class MainTest {
         testCities.add(testCity2);
     }
 
-    @Test
-    void main() {
-
-    }
 }

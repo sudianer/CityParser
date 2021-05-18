@@ -1,12 +1,9 @@
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class CitiesController {
-    List<City> cities;
+    private List<City> cities;
     
     public CitiesController(List<City> cities){
         this.cities = cities;
@@ -15,6 +12,7 @@ public class CitiesController {
     public CitiesController(String path) throws IOException {
         Scanner scan = new Scanner(Paths.get(path));
         List<City> cities = new ArrayList<>();
+
         while(scan.hasNext()){
             cities.add(new City(scan.nextLine()));
         }
@@ -24,11 +22,9 @@ public class CitiesController {
     public List<City> getCities() {
         return cities;
     }
-    
-    public void print(){
-        for (City x: cities) {
-            System.out.println(x.toString());
-        }
+
+    public City getCity(int index){
+        return cities.get(index);
     }
     
     public void sortByName(){
@@ -38,5 +34,44 @@ public class CitiesController {
     public void sortByDistrictAndName(){
         cities.sort(Comparator.comparing(c -> c.getDistrict().toLowerCase() + c.getName().toLowerCase()));
     }
-    
+
+    public int getMostPopulatedCityIndex(){
+
+        int population = 0;
+        int index = 0;
+
+        for (int i = 0; i < cities.size(); i++){
+            if(cities.get(i).getPopulation() > population){
+                population = cities.get(i).getPopulation();
+                index = i;
+            }
+        }
+
+        return index;
+    }
+
+    public String regionalSlice(){
+        String district;
+        Integer number;
+        Map<String, Integer> slice = new HashMap<>();
+        for (City city : cities) {
+            district = city.getDistrict();
+
+            if(!slice.containsKey(district)){
+                slice.put(city.getDistrict(), 1);
+                continue;
+            }
+
+            number = slice.get(district);
+            slice.replace(district, number, number+1);
+
+        }
+        StringBuilder result = new StringBuilder();
+        for (Map.Entry entry: slice.entrySet()) {
+            result.append(entry.getKey()).append(" - ").append(entry.getValue()).append("\n");
+        }
+        return result.toString();
+
+    }
+
 }
