@@ -61,13 +61,6 @@ class CityTest {
     }
 
     @Test
-    void infoRowConstructorTest(){
-        City expected = testCity1;
-        City actual = new City("1;Самара;Самарская область;Поволжский округ;1500000;1863");
-        Assertions.assertEquals(expected, actual);
-    }
-
-    @Test
     void testEquals_Hash(){
         City testCity1Clone = new City(testCity1.getName(),
                                        testCity1.getRegion(),

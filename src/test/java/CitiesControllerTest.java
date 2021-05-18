@@ -9,14 +9,14 @@ class CitiesControllerTest {
 
     City testCity1 = new City("Самара", "Самарская область", "Поволжский округ", 1500000, "1863");
     City testCity2 = new City("Москва", "Московская область", "Центральный округ", 25000000, "1830");
-    City testCity3 = new City("3;Владимир;Владимирская область;Центральный округ;350000;1680;");
+    City testCity3 = new City("Владимир","Владимирская область","Центральный округ",350000,"1680");
     List<City> testCities = new ArrayList<>();
     {
         testCities.add(testCity1);
         testCities.add(testCity2);
         testCities.add(testCity3);
     }
-    CitiesController cc = new CitiesController(testCities);
+    CitiesController citiesController = new CitiesController(testCities);
 
     final String TEST_CITIES_PATH = "src/test/java/testCitiesFile.txt";
     @Test
@@ -26,12 +26,6 @@ class CitiesControllerTest {
         List<City> actual = cc.getCities();
 
         Assertions.assertEquals(expected,actual);
-    }
-
-    @Test
-    void print() {
-
-
     }
 
     @Test
@@ -69,7 +63,7 @@ class CitiesControllerTest {
     void getMostPopulatedCity(){
         int expected = 1;
 
-        int actual = cc.getMostPopulatedCityIndex();
+        int actual = citiesController.getMostPopulatedCityIndex();
 
         Assertions.assertEquals(actual, expected);
     }
@@ -78,7 +72,7 @@ class CitiesControllerTest {
     void getCity() {
         City expected = testCity1;
 
-        City actual = cc.getCity(0);
+        City actual = citiesController.getCity(0);
 
         Assertions.assertEquals(expected, actual);
     }
@@ -95,7 +89,7 @@ class CitiesControllerTest {
     @Test
     void printRegionSlice() {
         String expected = "Поволжский округ - 1\nЦентральный округ - 2\n";
-        String actual = cc.regionalSlice();
+        String actual = citiesController.regionalSlice();
 
         Assertions.assertEquals(expected, actual);
     }

@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String args[]) throws IOException {
+    public static void main(String[] args) throws IOException {
         final String CITIES_PATH = "src/main/java/Cities.txt";
         CitiesController cities = new CitiesController(CITIES_PATH);
         Scanner scanner = new Scanner(System.in);
@@ -45,6 +45,7 @@ public class Main {
                     System.out.println("Срез по регионам:");
                     System.out.println(cities.regionalSlice());
                     choice = scanner.nextInt();
+                    break;
                 case 9:
                     System.out.println("Приложение закрывается");
                     isWorking = false;

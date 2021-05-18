@@ -22,16 +22,6 @@ public class City {
         this.foundation = foundation;
     }
 
-    public City(String infoRow){
-        Assert.checkNonNull(infoRow);
-        String[] info = infoRow.split(";");
-        this.name = info[1];
-        this.region = info[2];
-        this.district = info[3];
-        this.population = Integer.parseInt(info[4]);
-        this.foundation = info[5];
-    }
-
     public String getName() {
         return name;
     }

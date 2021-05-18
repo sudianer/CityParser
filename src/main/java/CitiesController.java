@@ -14,10 +14,13 @@ public class CitiesController {
         List<City> cities = new ArrayList<>();
 
         while(scan.hasNext()){
-            cities.add(new City(scan.nextLine()));
+            String[] infoRow = scan.nextLine().split(";");
+            cities.add(new City(infoRow[1], infoRow[2], infoRow[3], Integer.parseInt(infoRow[4]), infoRow[5]));
         }
         this.cities = cities;
     }
+
+
 
     public List<City> getCities() {
         return cities;
@@ -28,11 +31,11 @@ public class CitiesController {
     }
     
     public void sortByName(){
-        cities.sort(Comparator.comparing(c -> c.getName().toLowerCase()));
+        cities.sort(Comparator.comparing(city -> city.getName().toLowerCase()));
     }
     
     public void sortByDistrictAndName(){
-        cities.sort(Comparator.comparing(c -> c.getDistrict().toLowerCase() + c.getName().toLowerCase()));
+        cities.sort(Comparator.comparing(city -> city.getDistrict().toLowerCase() + city.getName().toLowerCase()));
     }
 
     public int getMostPopulatedCityIndex(){
