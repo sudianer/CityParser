@@ -1,45 +1,45 @@
-import java.util.Scanner;
-
 public class City {
 
-    String title;
+    String name;
     String region;
-    String federalRegion;
+    String district;
     int population;
-    int foundation;
+    String foundation;
     
-    public City(String title,
+    public City(String name,
                 String region,
-                String federalRegion,
+                String district,
                 int population,
-                int foundation){
+                String foundation){
 
-        this.title = title;
+        this.name = name;
         this.region = region;
-        this.federalRegion = federalRegion;
+        this.district = district;
         this.population = population;
         this.foundation = foundation;
     }
 
     public City(String infoRow){
         String[] info = infoRow.split(";");
-        this.title = info[1];
+        this.name = info[1];
         this.region = info[2];
-        this.federalRegion = info[3];
+        this.district = info[3];
         this.population = Integer.parseInt(info[4]);
-        this.foundation = Integer.parseInt(info[5]);
+        this.foundation = info[5];
     }
 
     @Override
     public String toString() {
         return "City{" +
-                "title='" + title + '\'' +
+                "name='" + name + '\'' +
                 ", region='" + region + '\'' +
-                ", federalRegion='" + federalRegion + '\'' +
+                ", district='" + district + '\'' +
                 ", population=" + population +
-                ", foundation=" + foundation +
+                ", foundation='" + foundation + '\'' +
                 '}';
     }
+
+
 }
 
 

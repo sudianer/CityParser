@@ -11,7 +11,7 @@ public class Main {
 
     public static void main(String args[]) throws IOException {
 
-        final String CITIES_PATH = "src/Cities.txt";
+        final String CITIES_PATH = "src/main/java/Cities.txt";
         List<City> cities = readCities(CITIES_PATH);
 
         for (City x: cities) {
@@ -22,7 +22,7 @@ public class Main {
     public static List<City> readCities(String path) throws IOException {
 
         List<City> cities = new ArrayList<>();
-        Scanner scanner = new Scanner(Paths.get(path)).useDelimiter(";");
+        Scanner scanner = new Scanner(Paths.get(path));
 
         while(scanner.hasNext()){
             cities.add(new City(scanner.nextLine()));
