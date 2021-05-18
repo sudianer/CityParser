@@ -1,3 +1,5 @@
+import com.sun.tools.javac.util.Assert;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -21,6 +23,7 @@ public class Main {
 
     public static List<City> readCities(String path) throws IOException {
 
+        Assert.checkNonNull(path);
         List<City> cities = new ArrayList<>();
         Scanner scanner = new Scanner(Paths.get(path));
 
@@ -29,6 +32,10 @@ public class Main {
         }
 
         return cities;
+    }
+
+    public static void printCities(){
+
     }
 
 }
