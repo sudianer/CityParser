@@ -9,6 +9,12 @@ public class CitiesController {
         this.cities = cities;
     }
 
+    /**
+     * Read Cities list from file
+     * @param path - path to file
+     * @throws IOException
+     */
+
     public CitiesController(String path) throws IOException {
         Scanner scan = new Scanner(Paths.get(path));
         List<City> cities = new ArrayList<>();
@@ -20,24 +26,42 @@ public class CitiesController {
         this.cities = cities;
     }
 
-
-
+    /** @return current list of Cities
+     */
     public List<City> getCities() {
         return cities;
     }
 
+    /**
+     * Returns one city by index
+     * @param index - City index
+     * @return one City
+     */
     public City getCity(int index){
         return cities.get(index);
     }
-    
+
+    /**
+     * Sorts current list by Name
+     * (use getCities again to get sorted list)
+     */
     public void sortByName(){
         cities.sort(Comparator.comparing(city -> city.getName().toLowerCase()));
     }
-    
+
+    /**
+     * Sorts current list by District
+     * and by name inside Districts
+     * (use getCities again to get sorted list)
+     */
     public void sortByDistrictAndName(){
         cities.sort(Comparator.comparing(city -> city.getDistrict().toLowerCase() + city.getName().toLowerCase()));
     }
 
+    /**
+     * Returns index of the most populated City
+     * @return
+     */
     public int getMostPopulatedCityIndex(){
 
         int population = 0;
@@ -53,6 +77,13 @@ public class CitiesController {
         return index;
     }
 
+    /**
+     * Returns STRING with number of cities in each district.
+     * Output example:
+     *     first district - 1\n
+     *     second district - 4
+     * @return
+     */
     public String regionalSlice(){
         String district;
         Integer number;

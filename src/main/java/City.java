@@ -1,4 +1,3 @@
-import com.sun.tools.javac.util.Assert;
 import java.util.Objects;
 
 public class City {

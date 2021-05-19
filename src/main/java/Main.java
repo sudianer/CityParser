@@ -57,6 +57,10 @@ public class Main {
         }
     }
 
+
+    /**
+     * Shows menu in console
+     */
     public static void showMenu(){
         System.out.println("Меню:");
         System.out.println("0: Показать меню снова");
