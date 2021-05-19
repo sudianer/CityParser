@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -19,9 +20,7 @@ public class Main {
                     break;
                 case 1:
                     System.out.println("Вывожу список городов");
-                    for (City city: cities.getCities()) {
-                        System.out.println(city.toString());
-                    }
+                    System.out.println(listOfCities(cities.getCities()));
                     choice = scanner.nextInt();
                     break;
                 case 2:
@@ -36,9 +35,7 @@ public class Main {
                     break;
                 case 4:
                     System.out.println("Самый населенный город:");
-                    int index = cities.getMostPopulatedCityIndex();
-                    City mostPopulatedCity = cities.getCity(index);
-                    System.out.println(index + " = " + mostPopulatedCity.getPopulation());
+                    System.out.println(mostPopulatedCity(cities));
                     choice = scanner.nextInt();
                     break;
                 case 5:
@@ -61,7 +58,7 @@ public class Main {
     /**
      * Shows menu in console
      */
-    public static void showMenu(){
+    private static void showMenu(){
         System.out.println("Меню:");
         System.out.println("0: Показать меню снова");
         System.out.println("1: Вывести список городов");
@@ -70,5 +67,28 @@ public class Main {
         System.out.println("4: Вывести самый населенный город");
         System.out.println("5: Вывести срез населения по регионам");
         System.out.println("9: Выйти из приложения");
+    }
+
+    /**
+     * @return STRING of all cities
+     */
+    private static String listOfCities(List<City> cities){
+        String result = "";
+        for (City city: cities) {
+            result += city.toString() + "\n";
+        }
+        return result;
+    }
+
+    /**
+     * output example: 3 = 1500000
+     * @param cities - CitiesController of this class
+     * @return STRING of most populated city
+     */
+    private static String mostPopulatedCity(CitiesController cities){
+        int index = cities.getMostPopulatedCityIndex();
+        City mostPopulatedCity = cities.getCity(index);
+
+        return index + " = " + mostPopulatedCity.getPopulation();
     }
 }
